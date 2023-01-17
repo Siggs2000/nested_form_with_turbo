@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/turbo-rails": "^7.2.4",
+    "@rails/request.js": "^0.0.8",
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.10.2",
+    "bootstrap-select": "^1.13.18",
+    "chart.js": "^4.1.1",
+    "chartkick": "^4.2.0",
+    "esbuild": "0.16.10",
+    "esbuild-rails": "^1.0.3",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "sass": "^1.57.1",
+    "stimulus": "^3.2.1",
+    "sweetalert2": "^11.6.16"
+  },
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
+}

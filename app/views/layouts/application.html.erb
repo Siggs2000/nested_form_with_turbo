@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Turbo Test</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "custom", "data-turbo-track": "reload"  %>
+    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->  
+    <%# javascript_importmap_tags %>
+    <!-- in head.html.erb -->
+    <% if @force_refresh %>
+      <meta name="force-refresh" content="<%= Time.zone.now.to_i %>" data-turbo-track="reload">
+    <% end %>
+  </head>
+
+  <body>
+    <!-- <p class="notice"><%# notice %></p>
+    <p class="alert"><%# alert %></p>
+    <%# yield %>
+    <script>
+      document.addEventListener('turbo:load', function() {
+        console.log('turbo:loaded and running');
+      })
+    </script>
+  </body> -->
+
+  <body class="sidebar-mini">
+    <!-- <script>
+      document.addEventListener("turbo:load", function() {
+        console.log("Turbo is loaded up and running!");
+      })
+    </script> -->
+    <div class="wrapper">
+      <%# render "layouts/nav"  if user_signed_in? %>
+      <!-- <div class="content-wrapper"> -->
+        <!-- <section class="content"> -->
+          <!-- <div class="container-fluid"> -->
+            <%= render "layouts/side_nav_new" if user_signed_in? %>
+            <% if @is_turbo_native_app %>
+              <div class="turbo-content">
+            <% else %>
+              <div class="content mobile-content">
+            <% end %>
+            <% flash.each do |type, msg| %>
+              <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
+                <%= msg %>
+                <button class="close" data-dismiss="alert">x</button>
+              </div>
+            <% end %> 
+              <% if user_signed_in? %>
+                <div class="navbar-toggle d-inline d-lg-none">
+                  <button type="button" class="btn btn-square-sm" style="display: none;">
+                    <i class="tim-icons icon-bullet-list-67"></i>
+                  </button>
+                </div>
+              <% end %>
+              <%= yield %>
+              <% if user_signed_in? && @is_turbo_native_app %>
+                <div id="mybutton-close" class="navbar-toggle d-inline toggled">
+                  <button class="btn-circle btn-xl btn-success navbar-toggler">
+                    <i class="tim-icons icon-bullet-list-67"></i>
+                  </button>
+                </div>
+             <% end %>
+            <!-- </div> -->
+              <%= render "layouts/footer" %>
+            </div>
+        <!-- </section> -->
+      <!-- </div> -->
+      <%# render "layouts/js_stuff" %>
+    </div>
+  </body>
+</html>

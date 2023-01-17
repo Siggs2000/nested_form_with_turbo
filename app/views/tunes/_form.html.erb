@@ -1,0 +1,41 @@
+<%= simple_form_for @tune do |f| %>
+  <% if tune.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tune.errors.count, "error") %> prohibited this tune from being saved:</h2>
+
+      <ul>
+        <% tune.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <!-- <legend>Tune Outcome</legend> -->
+    <div class="row">
+        <div class="col-6">
+            <%# f.label :overall_rating, style: "display: block" %>
+            <%= f.input :overall_rating, collection: Tune.overall_ratings.keys, label_method: lambda {|k| k.humanize}, include_blank: false %>
+            <%= f.hidden_field :sailing_session_id, value: params[:sailing_session_id] %>
+        </div>
+    </div>
+  </fieldset>
+
+  <div id="settings" class="mb-2">
+    <legend>Settings:</legend>
+    <%= render partial: "setting", collection: @tune.settings %>
+  </div>
+
+  <div class="row justify-content-end">
+    <%= link_to "Add another setting", setting_field_tunes_path, data: { turbo_stream: true }, class: "btn btn-lg btn-success " %>
+  </div>
+
+  <div>
+    <% if f.object.persisted? %>
+      <%= f.submit "Update", class: "btn btn-lg btn-block btn-primary" %>
+    <% else %>
+      <%= f.submit "Save This Tune", data: { confirm: 'Are you sure you are done entering this tune?' }, class: "btn btn-lg btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

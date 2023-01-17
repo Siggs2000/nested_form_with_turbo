@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sailing_session_id: 1
+  overall_rating: 1
+  upwind_speed: 1
+  upwind_angle: 1
+  downwind_speed: 1
+  downwind_angle: 1
+  groove: 1
+
+two:
+  sailing_session_id: 1
+  overall_rating: 1
+  upwind_speed: 1
+  upwind_angle: 1
+  downwind_speed: 1
+  downwind_angle: 1
+  groove: 1
